@@ -1,41 +1,38 @@
-# app.py
+# chatbot.py ← Main chatbot logic
 import streamlit as st
-import json
-import pandas as pd
-from data_loader import load_data
-from logic import get_recommendation, get_roi_response
+from logic import get_bot_response
+from data_loader import load_data, get_summary_stats
 
-# Load FAQ JSON
-with open("faq.json", "r", encoding="utf-8") as f:
-    faq_data = json.load(f)
+st.set_page_config(page_title="CropIQ Chatbot", page_icon="🌾")
+st.title("🤖 CropIQ Chatbot for Farmers")
+st.markdown("""
+Ask questions about your crops, irrigation, fertilizer, ROI, and more.
+""")
 
-# Load Excel Data
-data = load_data("System_Data_Cleaned.xlsx")
+# Load data and stats
+system_data = load_data()
+stats = get_summary_stats(system_data)
 
-# Chatbot logic
-def get_bot_response(query):
-    # Check in FAQ first
-    for item in faq_data:
-        if query.lower() in item["question"].lower():
-            return item["answer"]
+# Session state for chat
+if "messages" not in st.session_state:
+    st.session_state["messages"] = [
+        {"role": "assistant", "content": "Welcome! How can I assist you with your crops today?"}
+    ]
 
-    # Custom logic based on dataset
-    if "roi" in query.lower():
-        return get_roi_response(data)
-    if "irrigation" in query.lower() or "water" in query.lower():
-        return get_recommendation(data, "Irrigation")
-    if "yield" in query.lower():
-        return get_recommendation(data, "Yield")
+# Display chat history
+for msg in st.session_state["messages"]:
+    with st.chat_message(msg["role"]):
+        st.markdown(msg["content"])
 
-    return "Sorry, I couldn't find an answer. Please ask a farming-related question."
+# User input
+user_input = st.chat_input("Ask me anything about farming...")
+if user_input:
+    st.session_state["messages"].append({"role": "user", "content": user_input})
+    with st.chat_message("user"):
+        st.markdown(user_input)
 
-# Streamlit UI
-st.set_page_config(page_title="CropIQ Chatbot", layout="centered")
-st.title("🌾 CropIQ Farmer Chatbot")
-st.markdown("Ask me about your crop, irrigation, fertilizer, yield, ROI, and more!")
-
-user_query = st.text_input("Ask your question:", "How do I increase yield?")
-
-if st.button("Get Answer"):
-    response = get_bot_response(user_query)
-    st.success(response)
+    # Get bot reply
+    bot_reply = get_bot_response(user_input, system_data, stats)
+    st.session_state["messages"].append({"role": "assistant", "content": bot_reply})
+    with st.chat_message("assistant"):
+        st.markdown(bot_reply)
