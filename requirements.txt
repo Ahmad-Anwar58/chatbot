@@ -1,6 +1,2 @@
 streamlit
-scikit-learn
-pandas
-numpy
-matplotlib
-joblib
+openai
