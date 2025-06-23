@@ -1,26 +1,30 @@
 [
-    {
-        "question": "What crops are suitable for dryland farming?",
-        "answer": "Dryland farming is best suited for crops that are drought-resistant like sorghum, millet, and some varieties of wheat."
-    },
-    {
-        "question": "How can I improve soil fertility naturally?",
-        "answer": "You can improve soil fertility by using compost, practicing crop rotation, and planting cover crops like legumes."
-    },
-    {
-        "question": "When should I irrigate my crops?",
-        "answer": "If soil moisture is below 40% and there is no rainfall, it's time to irrigate your crops."
-    },
-    {
-        "question": "How do I calculate ROI for my crops?",
-        "answer": "ROI = (Profit / Total Investment) x 100. Profit is Revenue minus Cost. Revenue = Yield x Market Price."
-    },
-    {
-        "question": "What are common signs of pest infestation?",
-        "answer": "Look for chewed leaves, discoloration, wilting, or visible pests like aphids and caterpillars."
-    },
-    {
-        "question": "How can I protect crops from frost?",
-        "answer": "Use frost blankets or irrigation to form protective ice, and avoid planting frost-sensitive crops in colder months."
-    }
+  {
+    "question": "What crops are suitable for my soil type?",
+    "answer": "Wheat, rice, or maize for loamy soil; legumes for sandy soil; test your soil's pH and texture to confirm."
+  },
+  {
+    "question": "How often should I water my crops?",
+    "answer": "Irrigation frequency depends on soil moisture and crop type. Wheat every 7-10 days; rice more frequently."
+  },
+  {
+    "question": "What is the best way to fertilize my crops?",
+    "answer": "Use NPK fertilizers based on soil tests. Apply urea at sowing and DAP at early growth stages."
+  },
+  {
+    "question": "How can I identify pests on my crops?",
+    "answer": "Check for chewed leaves, discoloration, or stunted growth. Use Plantix app to diagnose."
+  },
+  {
+    "question": "What are the effects of drought on crops?",
+    "answer": "Drought reduces growth and yield. Use mulch and drought-resistant seeds. Irrigate wisely."
+  },
+  {
+    "question": "How can I calculate ROI?",
+    "answer": "ROI = (Profit - Cost) / Cost * 100. Include input, labor, and market price in your calculation."
+  },
+  {
+    "question": "What is the current market price of wheat?",
+    "answer": "Check local mandi rates or apps like AgMarket. Price varies by location and quality."
+  }
 ]
