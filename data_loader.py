@@ -1,6 +1,9 @@
 import pandas as pd
 
 def load_sensor_data(filepath):
+    """
+    Loads sensor data from an Excel file and fills missing values.
+    """
     try:
         df = pd.read_excel(filepath)
         df.fillna(method='ffill', inplace=True)
@@ -10,6 +13,9 @@ def load_sensor_data(filepath):
         return pd.DataFrame()
 
 def get_latest_values(df):
+    """
+    Extracts the latest row from the dataframe and returns selected sensor values.
+    """
     if df.empty:
         return {}
     latest = df.iloc[-1]
@@ -26,7 +32,10 @@ def get_latest_values(df):
         "Soil Health": latest['Soil Health Index (0-100)']
     }
 
-# Add this at the end of data_loader.py
 def get_latest_sensor_data(file_path="System_Data_Cleaned.xlsx"):
+    """
+    Combines loading and extracting the latest sensor data into one function.
+    Used by chatbot.py and app.py.
+    """
     df = load_sensor_data(file_path)
     return get_latest_values(df)
