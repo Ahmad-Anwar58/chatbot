@@ -25,3 +25,8 @@ def get_latest_values(df):
         "Pesticide Usage": latest['Pesticide Usage (kg)'],
         "Soil Health": latest['Soil Health Index (0-100)']
     }
+
+# Add this at the end of data_loader.py
+def get_latest_sensor_data(file_path="System_Data_Cleaned.xlsx"):
+    df = load_sensor_data(file_path)
+    return get_latest_values(df)
